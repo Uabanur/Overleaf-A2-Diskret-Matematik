@@ -1,0 +1,29 @@
+\section*{Opgave B}
+
+Efterfølgende udsagn testes mht. om de er \textit{gyldige} eller \textit{ikke gyldige}. Når vi skal vise, at et udsagn ikke er gyldigt, er det tilstrækkeligt at opstille en modmodel med en fortolkning, hvori udsagnet er falsk.\\ Når vi skal vise, at et udsagn er gyldigt, skal udsagnet vises at være sandt for en vilkårlig fortolkning.
+
+\begin{enumerate}
+    \item $\exists x P(x) \rightarrow \forall x P(x)$
+    
+    \begin{flushright}
+        Ikke gyldig. \\ 
+        Antag; $P(x)$: at være rig, og $x$: person. Én rig person, gør ikke alle rige (desværre).
+    \end{flushright}
+    
+    %% SKRIV NOGET HER. SVARER TIL UGE 4, side 133.
+    
+    \item $\forall x (P(x) \vee \neg P(x))$
+    
+    \begin{flushright}
+        Gyldig. \\ 
+        Enten har $x$ egenskaben $P(x)$ ellers har $x$ ikke egenskaben $P(x)$.
+    \end{flushright}
+
+Uddybning til 2.: Lad $\mathcal{F}$ være en vilkårlig fortolkning. Vi giver $x$ en vilkårlig værdi $c$ i domænet af $\mathcal{F}$. Da $P(x)$ er sandt (hhv. falsk) for alle $x$, er $P(c)$ også sandt (hhv. falsk) for den vilkårlige værdi $c$.\\
+\\
+Case 1: $P(c)$ er sand. Så er $\neg P(c)$ falsk, og $P(c) \vee \neg P(c)$ er sandt. \\
+Case 2: $P(c)$ er falsk. Så er $\neg P(c)$ sand, og $P(c) \vee \neg P(c)$ er sandt.\\
+\\
+Da udsagnet er $P(c) \vee \neg P(c)$ gyldigt for et vilkårligt valg af $c$ og for en vilkårlig fortolkning, er udsagnet $\forall x (P(x) \vee \neg P(x))$ gyldigt.
+
+\end{enumerate}

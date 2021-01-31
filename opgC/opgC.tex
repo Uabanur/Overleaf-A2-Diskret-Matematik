@@ -1,0 +1,142 @@
+\section*{Opgave C}
+
+Følgende tre påstande tjekkes for gyldighed via tableau metoden.
+
+\begin{enumerate}
+    \item $ \forall x\big(P(x) \to Q(x)\big), \forall x P(x) \vDash  \forall x Q(x) $. \\
+    
+
+Vi husker dekompositionsreglerne for alkvantoren fra uge 5: Når vi substituerer $x$ i $\forall x A: \F$, skal vi indføre et nyt konstantsymbol. Når vi substituerer $x$ i $\forall x A: \T$, skal konstantsymbolet optræde tidligere på grenen. Vi håndterer derfor $\forall \F$ først.\\
+\\
+Hvis påstanden er skrevet op med præmisserne der medfører konklusionen får vi følgende tableau:
+
+
+ \[
+ \begin{tikzpicture}[align=center,every edge quotes/.style={magenta,auto,font=\scriptsize}]
+   \graph[trie,tree layout,level sep=7mm,sibling distance=30mm] 
+   {
+
+     "\formel{1}{\Big(\forall x\big(P(x) \to Q(x)\big) \wedge \forall x P(x)\Big) \to \forall x Q(x)}{F}" 
+     -- 
+
+     "\formel{2}{\forall x\big(P(x) \to Q(x)\big) \wedge \forall x P(x)}{T} \\ 
+     \formel{3}{\forall x Q(x)}{F}" 
+     [> "$\tof$ på 1"] --  
+
+    "\formel{4}{Q(c)}{F}"
+    [> "$\allf$ på 3"] --
+
+     "\formel{5}{\forall x\big(P(x) \to Q(x)\big)}{T} \\ 
+     \formel{6}{\forall x P(x)}{T}" 
+     [> "$\landt$ på 2"] -- 
+    
+    "\formel{7}{P(c) \to Q(c)}{T} \\ 
+    \formel{8}{P(c)}{T}"
+    [> "$\allt$ på 5 og 6"] --
+    
+    
+    {
+        "\formel{9}{P(c)}{F} \\ \times" --,
+        "\formel{10}{Q(c)}{T} \\ \times" 
+        [> "$\tot$ på 7"] --
+    }
+     
+  };
+  \end{tikzpicture}
+\]
+
+%% SKRIV NOGET HER OM ALKVANTOR OG SUBS. side 163.
+Det kan dermed konkluderes, at påstanden er gyldig, da alle grene lukkes. \\
+Dette kan også hurtigt ses fra påstanden selv; alle $x$ der har egenskaben $P(x)$ har også egenskaben $Q(x)$, samt information at alle $x$ \textbf{har} egenskaben $P(x)$, da må alle $x$ også have egenskaben $Q(x)$.\\
+\\
+
+\item $\forall x \big(P(x) \vee Q(x)\big) \vDash \forall x P(x) \vee \forall x Q(x)$. \\
+
+Påstanden tjekkes med tableau metoden ligesom forrige opgave. Igen tager vi først trin, der indfører nye konstantsymboler.
+
+ \[
+ \begin{tikzpicture}[align=center,every edge quotes/.style={magenta,auto,font=\scriptsize}]
+   \graph[trie,tree layout,level sep=7mm,sibling distance=30mm] 
+   {
+
+    "\formel{1}{\forall x \big(P(x) \vee Q(x)\big) \to \big(\forall x P(x) \vee \forall x Q(x) \big)}{F}" 
+    -- 
+     
+    "\formel{2}{\forall x \big(P(x) \vee Q(x)\big)}{T} \\
+    \formel{3}{\forall x P(x) \vee \forall x Q(x) }{F}"
+    [> "$\tof$ på 1"] --  
+    
+    "\formel{4}{\forall x P(x)}{F} \\ 
+    \formel{5}{\forall x Q(x)}{F}"
+    [> "$\lorf$ på 3"] --  
+     
+    "\formel{6}{P(c_1)}{F} \\ 
+    \formel{7}{Q(c_2)}{F}"
+    [> "$\allf$ på 4 og 5"] --  
+     
+    "\formel{8}{P(c_1) \vee Q(c_1)}{T} \\
+    \formel{9}{P(c_2) \vee Q(c_2)}{T}"
+    [> "$\allt$ på 2"] --  
+    
+
+    
+    {
+        "\formel{10}{P(c_1)}{T} \\ \times" --,
+        "\formel{11}{Q(c_1)}{T}" [> "$\lort$ på 8"] --
+        {
+          "\formel{12}{P(c_2)}{T} \\ \bigcirc",
+          "\formel{13}{Q(c_2)}{T} \\ \times"  [> "$\lor\T$ på 9"]  -- 
+        }
+    }
+  };
+  \end{tikzpicture}
+\]
+
+Denne påstand er dermed ikke gyldig, da alle grene ikke kan lukkes. En mulig sandhedstildeling, der gør påstanden falsk, er $Q(c_1)$ og $P(c_2)$. \\
+\\
+Bonus: modmodel. Lad $x$ være studerende. $P(x)$ er piger, $Q(x)$ er drenge. Påstanden kan da læses: "Hvis alle studerende er enten drenge eller piger, er enten alle studerende drenge, eller alle studerende er piger." Påstanden er ikke gyldig.\\
+
+\item $\exists x \forall y P(x,y) \vDash \forall y \exists x P(x,y)$. \\
+
+Påstanden tjekkes med tableau metoden ligesom forrige opgaver.
+Der indgår både dekomposition af alkvantor og eksistenskvantor. Vi tager først trin med $\forall \F$ og $\exists \T$ og indfører konstantstymboler. Derefter trin hvor vi substituerer de konstantsymboler, der optræder tidligere på grenen.
+
+ \[
+ \begin{tikzpicture}[align=center,every edge quotes/.style={magenta,auto,font=\scriptsize}]
+   \graph[trie,tree layout,level sep=7mm,sibling distance=30mm] 
+   {
+
+    "\formel{1}{\exists x \forall y P(x,y) \to \forall y \exists x P(x,y)}{F}" 
+    -- 
+    
+    "\formel{2}{\exists x \forall y P(x,y)}{T} \\ 
+    \formel{3}{\forall y \exists x P(x,y)}{F}"
+    [> "$\tof$ på 1"] -- 
+    
+    "\formel{4}{\forall y P(c_1,y)}{T}"
+    [> "$\ext$ på 2"] -- 
+    
+    "\formel{5}{\exists x P(x,c_2)}{F}"
+    [> "$\allf$ på 3"] -- 
+    
+    "\formel{6}{P(c_1,c_2)}{T}"
+    [> "$\allt$ på 4"] -- 
+    
+    "\formel{7}{P(c_1,c_2)}{F} \\ \times"
+    [> "$\exf$ på 5"] -- 
+
+  };
+  \end{tikzpicture}
+\]
+
+Grenen lukkes, så påstanden er gyldig. \\
+\\
+Eksempel på model: Lad $x$ være mænd, og $y$ kvinder. $P(x,y)$ betegner $x$ elsker $y$. Påstanden kan da læses: \\
+\\
+$\exists x \forall y P(x,y)$: Der findes en mand, der elsker alle kvinder. \\
+$\forall y \exists x P(x,y)$: For hver kvinde findes en mand, der elsker hende.\\
+$\exists x \forall y P(x,y) \vDash \forall y \exists x P(x,y)$: Hvis der findes en mand, der elsker alle kvinder, så kan der for hver kvinde findes en mand, der elsker hende.\\
+\\
+Påstanden er gyldig, da der i hvert fald findes én mand, der elsker alle kvinder.
+
+\end{enumerate}

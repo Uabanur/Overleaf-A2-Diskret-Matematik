@@ -1,0 +1,45 @@
+
+%%%% tikz er pakken som gør det hele muligt %%%%
+\usepackage[utf8]{luainputenc}
+\usepackage{url}
+
+\usepackage{tikz}
+\usetikzlibrary{graphs,graphdrawing,quotes,babel} % vi har brug for nogle tikz-biblioteker
+\usegdlibrary{trees, layered} % biblioteker til graf-placerings-algoritmer
+
+%%%% et par kommandoer til at markere åbne og lukkede grene %%%%
+
+\newcommand{\closed}{child[white, level distance=5mm] {node[black] {$\times$}}}
+\newcommand{\open}{child[white, level distance=5mm] {node[black] {$\bigcirc$}}}
+
+%%%%% et par shortcuts for typesetting af de to sandhedsværdier %%%%%
+
+\newcommand{\F}{\mathtt{F}}
+\newcommand{\T}{\mathtt{T}}
+
+%%%%%% navne på tableaureglerne: %%%%%%%%
+%%  \tof er en forkortelse for "->F"
+%% \lorf er en forkortelse for  "\/F"
+%% \landf er en forkortelse for "/\F"
+%% osv.
+
+
+\newcommand{\lorf}{\ensuremath{\lor\F}}
+\newcommand{\lort}{\ensuremath{\lor\T}}
+\newcommand{\landf}{\ensuremath{\land\F}}
+\newcommand{\landt}{\ensuremath{\land\T}}
+\newcommand{\tof}{\ensuremath{\to\!\F}}
+\newcommand{\tot}{\ensuremath{\to\!\T}}
+\newcommand{\lrf}{\ensuremath{\leftrightarrow\!\F}}
+\newcommand{\lrt}{\ensuremath{\leftrightarrow\!\T}}
+\newcommand{\negf}{\ensuremath{\neg\F}}
+\newcommand{\negt}{\ensuremath{\neg\T}}
+\newcommand{\allf}{\ensuremath{\forall\F}}
+\newcommand{\allt}{\ensuremath{\forall\T}}
+\newcommand{\exf}{\ensuremath{\exists\F}}
+\newcommand{\ext}{\ensuremath{\exists\T}}
+
+
+%%%%%%% en kommando til at typesette formlerne i tableauer. Kommandoen kaldes med \formel{<nummer>}{<formel>}{<F hvis sættes falsk, T hvis sættes sand>} %%%%%%%%%%%%%%%%
+
+\newcommand{\formel}[3]{{\color{red} \scriptsize #1} $#2: \ifx#3F \F \else \T \fi$}

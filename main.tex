@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{geometry}
+\usepackage[danish]{babel}
+ \geometry{
+ a4paper,
+ total={140mm,227mm},
+ left=35mm,
+ top=35mm,
+ }
+ 
+
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools} 
+\usepackage{bm}
+\usepackage{color}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,   
+    urlcolor=black,
+    filecolor=black,
+} 
+\urlstyle{same}
+
+\usepackage{ dsfont }
+\numberwithin{equation}{section}
+
+\input{tikz.tex} % sætter tikz op til at lave tableauer 
+
+\title{01017 Diskret Matematik A2}
+\author{s144107 Roar Nind Steffensen \\ s144063 Magnus Middelboe Søborg-Madsen}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\input{opgA/opgA.tex}
+\input{opgB/opgB.tex}
+\input{opgC/opgC.tex}
+\input{opgD/opgD.tex}
+\input{opgE/opgE.tex}
+\input{opgF/opgF.tex}
+
+
+
+\end{document}
